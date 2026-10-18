@@ -1,5 +1,6 @@
 """
 Script: eda_and_baseline.py
+Lokasi: UTS/05-Evaluation-Metric/eda_and_baseline.py
 Deskripsi: Eksplorasi Data Awal (EDA), Pelatihan Baseline Model (Logistic Regression,
 Random Forest, Gradient Boosting), dan Perhitungan Lengkap Metrik Evaluasi
 menggunakan Dataset Riil Kaggle / UCI Machine Learning Repository (N = 4.424).
@@ -23,14 +24,13 @@ from sklearn.metrics import (
 from sklearn.inspection import permutation_importance
 
 def run_experiment():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    project_root = os.path.abspath(os.path.join(base_dir, ".."))
+    current_dir = os.path.dirname(os.path.abspath(__file__))
     
-    data_path = os.path.join(project_root, "data", "raw", "student_dropout_dataset.csv")
-    fig_dir = os.path.join(project_root, "outputs", "figures")
-    processed_dir = os.path.join(project_root, "data", "processed")
+    # Path dataset di UTS/02-Dataset
+    data_path = os.path.join(current_dir, "..", "02-Dataset", "student_dropout_dataset.csv")
+    fig_dir = os.path.join(current_dir, "figures")
+    summary_path = os.path.join(current_dir, "metrics_summary.json")
     os.makedirs(fig_dir, exist_ok=True)
-    os.makedirs(processed_dir, exist_ok=True)
     
     print("=" * 75)
     print("1. MEMUAT DATASET EMPIRIS KAGGLE / UCI ML REPOSITORY...")
@@ -50,11 +50,6 @@ def run_experiment():
     print(f" - Dropout     (1) : {dropout_count} ({dropout_count/len(y)*100:.2f}%)")
     print(f" - Imbalance Ratio : 1 : {persist_count/dropout_count:.2f}")
 
-    # Simpan statistik deskriptif
-    desc = df.describe().round(2)
-    desc.to_csv(os.path.join(processed_dir, "descriptive_statistics.csv"))
-    print(f"[OK] Statistik deskriptif disimpan di data/processed/descriptive_statistics.csv")
-    
     # -------------------------------------------------------------
     # Visualisasi 1: Distribusi Kelas Riil
     # -------------------------------------------------------------
@@ -163,9 +158,9 @@ def run_experiment():
         print(f" - Confusion Matrix: [TN={cm[0,0]}, FP={cm[0,1]}, FN={cm[1,0]}, TP={cm[1,1]}]")
 
     # Simpan hasil metrik ke JSON
-    with open(os.path.join(processed_dir, "metrics_summary.json"), "w") as f:
+    with open(summary_path, "w") as f:
         json.dump(results, f, indent=4)
-    print(f"\n[OK] Rangkuman metrik evaluasi tersimpan di: data/processed/metrics_summary.json")
+    print(f"\n[OK] Rangkuman metrik evaluasi tersimpan di: {summary_path}")
 
     # -------------------------------------------------------------
     # Visualisasi 2: Confusion Matrices
@@ -257,7 +252,7 @@ def run_experiment():
     print("[OK] Figure 4 tersimpan: feature_importance.png")
     
     print("\n" + "=" * 75)
-    print("EKSPERIMEN & VISUALISASI DENGAN DATASET KAGGLE BERHASIL SELESAI!")
+    print("EKSPERIMEN & VISUALISASI BERHASIL SELESAI!")
     print("=" * 75)
 
 if __name__ == "__main__":
