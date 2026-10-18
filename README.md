@@ -28,7 +28,8 @@ Riset-Informatika/
 ├── 📂 UTS/                             # [SELESAI] Luaran Tugas Evaluasi Tengah Semester
 │   ├── 📂 01-Proposal-Penelitian/      # Proposal Akademik Lengkap 4 Bab
 │   │   ├── 📄 README.md                # Ringkasan eksekutif proposal & struktur bab
-│   │   └── 📄 Proposal_Penelitian.md   # Naskah proposal formal (Bab I - IV + 20 Pustaka)
+│   │   ├── 📄 Proposal_Penelitian.md   # Naskah proposal format Markdown
+│   │   └── 📄 Proposal_Penelitian.docx # Naskah proposal format Microsoft Word (DOCX)
 │   │
 │   ├── 📂 02-Dataset/                  # Dataset Empiris Riil Kaggle / UCI ML Repo
 │   │   ├── 📄 README.md                # Dokumentasi sumber Kaggle, sebaran kelas, & panduan unduh

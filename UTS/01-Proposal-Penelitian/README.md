@@ -6,7 +6,8 @@ Folder ini berisi dokumen lengkap **Proposal Penelitian** untuk Tugas Ujian Teng
 ---
 
 ### 📄 Berkas Utama
-* **Dokumen Lengkap**: [`Proposal_Penelitian.md`](Proposal_Penelitian.md)
+* **Dokumen Markdown**: [`Proposal_Penelitian.md`](Proposal_Penelitian.md)
+* **Dokumen Microsoft Word (DOCX)**: [`Proposal_Penelitian.docx`](Proposal_Penelitian.docx)
 
 ---
 
