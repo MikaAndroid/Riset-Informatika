@@ -1,0 +1,47 @@
+{
+    "Logistic_Regression (Baseline)": {
+        "Accuracy": 0.9567,
+        "Precision (Dropout)": 0.8302,
+        "Recall / Sensitivity": 0.9167,
+        "F1-Score (Dropout)": 0.8713,
+        "Macro F1-Score": 0.9226,
+        "ROC-AUC": 0.9921,
+        "PR-AUC (Average Precision)": 0.9627,
+        "Confusion_Matrix": {
+            "TN": 243,
+            "FP": 9,
+            "FN": 4,
+            "TP": 44
+        }
+    },
+    "Random_Forest": {
+        "Accuracy": 0.97,
+        "Precision (Dropout)": 0.8545,
+        "Recall / Sensitivity": 0.9792,
+        "F1-Score (Dropout)": 0.9126,
+        "Macro F1-Score": 0.9473,
+        "ROC-AUC": 0.9909,
+        "PR-AUC (Average Precision)": 0.9523,
+        "Confusion_Matrix": {
+            "TN": 244,
+            "FP": 8,
+            "FN": 1,
+            "TP": 47
+        }
+    },
+    "Gradient_Boosting (Proposed)": {
+        "Accuracy": 0.96,
+        "Precision (Dropout)": 0.8913,
+        "Recall / Sensitivity": 0.8542,
+        "F1-Score (Dropout)": 0.8723,
+        "Macro F1-Score": 0.9243,
+        "ROC-AUC": 0.9909,
+        "PR-AUC (Average Precision)": 0.9538,
+        "Confusion_Matrix": {
+            "TN": 247,
+            "FP": 5,
+            "FN": 7,
+            "TP": 41
+        }
+    }
+}
