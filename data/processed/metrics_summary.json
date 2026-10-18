@@ -1,47 +1,47 @@
 {
     "Logistic_Regression (Baseline)": {
-        "Accuracy": 0.9567,
-        "Precision (Dropout)": 0.8302,
-        "Recall / Sensitivity": 0.9167,
-        "F1-Score (Dropout)": 0.8713,
-        "Macro F1-Score": 0.9226,
-        "ROC-AUC": 0.9921,
-        "PR-AUC (Average Precision)": 0.9627,
+        "Accuracy": 0.8746,
+        "Precision (Dropout)": 0.7912,
+        "Recall / Sensitivity": 0.8275,
+        "F1-Score (Dropout)": 0.809,
+        "Macro F1-Score": 0.8578,
+        "ROC-AUC": 0.929,
+        "PR-AUC (Average Precision)": 0.8965,
         "Confusion_Matrix": {
-            "TN": 243,
-            "FP": 9,
-            "FN": 4,
-            "TP": 44
+            "TN": 539,
+            "FP": 62,
+            "FN": 49,
+            "TP": 235
         }
     },
-    "Random_Forest": {
-        "Accuracy": 0.97,
-        "Precision (Dropout)": 0.8545,
-        "Recall / Sensitivity": 0.9792,
-        "F1-Score (Dropout)": 0.9126,
-        "Macro F1-Score": 0.9473,
-        "ROC-AUC": 0.9909,
-        "PR-AUC (Average Precision)": 0.9523,
+    "Random_Forest (Bagging)": {
+        "Accuracy": 0.8757,
+        "Precision (Dropout)": 0.8042,
+        "Recall / Sensitivity": 0.8099,
+        "F1-Score (Dropout)": 0.807,
+        "Macro F1-Score": 0.8577,
+        "ROC-AUC": 0.9289,
+        "PR-AUC (Average Precision)": 0.899,
         "Confusion_Matrix": {
-            "TN": 244,
-            "FP": 8,
-            "FN": 1,
-            "TP": 47
+            "TN": 545,
+            "FP": 56,
+            "FN": 54,
+            "TP": 230
         }
     },
     "Gradient_Boosting (Proposed)": {
-        "Accuracy": 0.96,
-        "Precision (Dropout)": 0.8913,
-        "Recall / Sensitivity": 0.8542,
-        "F1-Score (Dropout)": 0.8723,
-        "Macro F1-Score": 0.9243,
-        "ROC-AUC": 0.9909,
-        "PR-AUC (Average Precision)": 0.9538,
+        "Accuracy": 0.8836,
+        "Precision (Dropout)": 0.8577,
+        "Recall / Sensitivity": 0.7641,
+        "F1-Score (Dropout)": 0.8082,
+        "Macro F1-Score": 0.8623,
+        "ROC-AUC": 0.9324,
+        "PR-AUC (Average Precision)": 0.8989,
         "Confusion_Matrix": {
-            "TN": 247,
-            "FP": 5,
-            "FN": 7,
-            "TP": 41
+            "TN": 565,
+            "FP": 36,
+            "FN": 67,
+            "TP": 217
         }
     }
 }

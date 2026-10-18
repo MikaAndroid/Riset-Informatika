@@ -13,18 +13,18 @@
 ### **ABSTRAK**
 Tingginya angka putus studi (*drop-out*) pada pendidikan tinggi menimbulkan kerugian finansial yang signifikan bagi perguruan tinggi serta merugikan masa depan akademik mahasiswa. Sebagian besar penelitian terdahulu yang memanfaatkan *Educational Data Mining* (EDM) berfokus pada pembangunan model berakurasi tinggi namun bersifat *black-box*, memprediksi risiko pada semester akhir, dan mengabaikan ketidakseimbangan kelas (*class imbalance*). Akibatnya, pengambil kebijakan akademik tidak memperoleh pemahaman mengenai faktor kausal spesifik yang melandasi risiko seorang mahasiswa, sehingga intervensi preventif sulit dilakukan secara terarah. 
 
-Penelitian ini mengusulkan sebuah kerangka kerja sistem deteksi dini (*early warning system*) berbasis algoritma *Gradient Boosting* yang diintegrasikan dengan metode *Explainable Artificial Intelligence* (XAI) menggunakan pendekatan *SHapley Additive exPlanations* (SHAP). Penelitian ini membatasi jendela pengamatan secara ketat pada tahun pertama perkuliahan (Semester 1 dan Semester 2) dengan memadukan indikator akademik awal, kondisi finansial/tunggakan biaya kuliah, status beasiswa, dan profil demografi. Kinerja model dievaluasi secara ketat menggunakan metrik yang tahan terhadap ketidakseimbangan data, yaitu *Precision-Recall AUC* (PR-AUC), *Recall (Sensitivity)*, dan *Macro F1-Score* dengan skema *Stratified 5-Fold Cross Validation*. Lapisan XAI dimanfaatkan untuk menguraikan faktor pendorong risiko (*risk drivers*) di tingkat global institusi maupun di tingkat lokal per individu mahasiswa (*waterfall plot*), yang kemudian dipetakan ke dalam rekomendasi aksi preskriptif bagi dosen wali. Hasil uji coba awal (*small test*) menunjukkan bahwa model usulan berhasil mencapai PR-AUC sebesar **0.9538**, Recall **0.8542**, dan Macro F1-Score **0.9243**, membuktikan kelayakan dan efektivitas framework yang diusulkan sebagai fondasi sistem pendukung keputusan retensi mahasiswa di perguruan tinggi.
+Penelitian ini mengusulkan sebuah kerangka kerja sistem deteksi dini (*early warning system*) berbasis algoritma *Gradient Boosting* yang diintegrasikan dengan metode *Explainable Artificial Intelligence* (XAI) menggunakan pendekatan *SHapley Additive exPlanations* (SHAP). Penelitian ini memanfaatkan dataset empiris nyata dari repositori **Kaggle / UCI Machine Learning Repository** (*Predict Students' Dropout and Academic Success*, Realinho et al., 2022) sebanyak 4.424 data mahasiswa dengan 34 variabel prediktor. Kerangka kerja penelitian ini membatasi jendela pengamatan secara ketat pada tahun pertama perkuliahan (Semester 1 dan Semester 2) dengan memadukan indikator akademik awal, kondisi finansial/tunggakan biaya kuliah, status beasiswa, dan profil demografi. Kinerja model dievaluasi secara ketat menggunakan metrik yang tahan terhadap ketidakseimbangan data, yaitu *Precision-Recall AUC* (PR-AUC), *Recall (Sensitivity)*, dan *Macro F1-Score* dengan skema *Stratified 5-Fold Cross Validation*. Lapisan XAI dimanfaatkan untuk menguraikan faktor pendorong risiko (*risk drivers*) di tingkat global institusi maupun di tingkat lokal per individu mahasiswa (*waterfall plot*), yang kemudian dipetakan ke dalam rekomendasi aksi preskriptif bagi dosen wali. Hasil uji coba awal (*small test*) pada dataset nyata Kaggle ($N=885$ test set) menunjukkan bahwa model usulan *Gradient Boosting* berhasil mencapai **Accuracy 88.36%**, **Precision 85.77%**, **ROC-AUC 0.9324**, **PR-AUC 0.8989**, dan **Macro F1-Score 0.8623**, membuktikan keunggulan dan transparansi framework yang diusulkan sebagai fondasi sistem pendukung keputusan retensi mahasiswa di perguruan tinggi.
 
-**Kata Kunci**: *Educational Data Mining*, *Student Retention*, *Drop-Out Prediction*, *Gradient Boosting*, *Explainable AI*, *SHAP*, *Imbalanced Data*.
+**Kata Kunci**: *Educational Data Mining*, *Student Retention*, *Drop-Out Prediction*, *Gradient Boosting*, *Explainable AI*, *SHAP*, *Imbalanced Data*, *Kaggle Benchmark Dataset*.
 
 ---
 
 ### **ABSTRACT**
 *High student drop-out rates in higher education lead to severe financial and reputational losses for universities while impeding students' personal and professional trajectories. While previous Educational Data Mining (EDM) studies have achieved notable predictive accuracy, most rely on black-box models that predict late-stage attrition without providing actionable explanations, often neglecting inherent class imbalances. Consequently, academic advisors cannot discern the specific root causes behind an individual student's risk profile.*
 
-*This research proposes an interpretable early warning framework utilizing Gradient Boosting algorithms coupled with Explainable Artificial Intelligence (XAI) via SHapley Additive exPlanations (SHAP). The observation window is strictly confined to the first academic year (Semesters 1 and 2), harmonizing early academic performance, tuition fee compliance, scholarship status, and demographic profiles. Model efficacy is rigorously benchmarked using imbalance-resilient metrics, including Precision-Recall AUC (PR-AUC), Sensitivity/Recall, and Macro F1-Score through Stratified 5-Fold Cross-Validation. The XAI layer provides both global feature importance and local instance-level attribution, directly translating mathematical explanations into prescriptive academic interventions. Preliminary experimental evaluations on a benchmark sample yield a PR-AUC of 0.9538, Recall of 0.8542, and Macro F1 of 0.9243, demonstrating the viability of the proposed framework for institutional decision-support systems.*
+*This research proposes an interpretable early warning framework utilizing Gradient Boosting algorithms coupled with Explainable Artificial Intelligence (XAI) via SHapley Additive exPlanations (SHAP). The research employs an authentic empirical dataset sourced from Kaggle and the UCI Machine Learning Repository (Predict Students' Dropout and Academic Success, Realinho et al., 2022), comprising 4,424 undergraduate student records with 34 predictor features. The observation window is strictly confined to the first academic year (Semesters 1 and 2), harmonizing early academic performance, tuition fee compliance, scholarship status, and demographic profiles. Model efficacy is rigorously benchmarked using imbalance-resilient metrics, including Precision-Recall AUC (PR-AUC), Sensitivity/Recall, and Macro F1-Score through Stratified 5-Fold Cross-Validation. The XAI layer provides both global feature importance and local instance-level attribution, directly translating mathematical explanations into prescriptive academic interventions. Preliminary experimental evaluations on the Kaggle holdout test set (N = 885) demonstrate an Accuracy of 88.36%, Precision of 85.77%, ROC-AUC of 0.9324, PR-AUC of 0.8989, and Macro F1 of 0.8623, demonstrating the robustness and interpretability of the proposed framework for institutional decision-support systems.*
 
-**Keywords**: *Educational Data Mining*, *Student Retention*, *Drop-Out Prediction*, *Gradient Boosting*, *Explainable AI*, *SHAP*, *Imbalanced Data*.
+**Keywords**: *Educational Data Mining*, *Student Retention*, *Drop-Out Prediction*, *Gradient Boosting*, *Explainable AI*, *SHAP*, *Imbalanced Data*, *Kaggle Benchmark Dataset*.
 
 ---
 
@@ -37,17 +37,17 @@ Dalam bidang informatika dan ilmu komputer, perkembangan *Educational Data Minin
 
 1. **Sifat Model yang Tertutup (*Black-Box Problem*)**: Algoritma pembelajaran mesin modern yang canggih umumnya bekerja seperti kotak hitam. Pengambil kebijakan akademik (Dekan, Ketua Program Studi, dan Dosen Wali) hanya disajikan probabilitas risiko (misal: "Mahasiswa A memiliki risiko drop-out 88%"), tanpa memahami latar belakang kausalitas mengapa model mengeluarkan kesimpulan tersebut. Tanpa adanya transparansi penjelasan, pihak kampus ragu-ragu dalam mengambil keputusan krusial.
 2. **Keterlambatan Waktu Deteksi (*Late Detection Horizon*)**: Sebagian besar penelitian terdahulu menyertakan fitur rekam jejak akademik mahasiswa hingga semester 4, 5, atau 6. Pada tahap ini, intervensi seringkali sudah terlambat karena kegagalan akademik atau beban finansial mahasiswa sudah terakumulasi sedemikian rupa sehingga pengunduran diri sulit dicegah.
-3. **Ketidakseimbangan Kelas dan Bias Akurasi Semu (*Class Imbalance Paradox*)**: Secara alamiah, jumlah mahasiswa yang mengalami putus studi berada pada proporsi minoritas (umumnya berkisar 10%–20%). Model konvensional yang dilatih tanpa penanganan ketidakseimbangan kelas cenderung memaksimalkan *Overall Accuracy* dengan mengorbankan kelas minoritas. Akibatnya, angka *False Negative* melonjak tinggi, di mana mahasiswa yang berisiko justru luput dari sistem peringatan dini.
+3. **Ketidakseimbangan Kelas dan Bias Akurasi Semu (*Class Imbalance Paradox*)**: Secara alamiah, jumlah mahasiswa yang mengalami putus studi berada pada proporsi minoritas (pada data empiris Kaggle berkisar 32.12%). Model konvensional yang dilatih tanpa penanganan ketidakseimbangan kelas cenderung memaksimalkan *Overall Accuracy* dengan mengorbankan kelas minoritas. Akibatnya, angka *False Negative* melonjak tinggi, di mana mahasiswa yang berisiko justru luput dari sistem peringatan dini.
 4. **Ketiadaan Rekomendasi Preskriptif (*Lack of Actionable Prescriptions*)**: Output prediksi dalam penelitian literatur umumnya berhenti pada klasifikasi biner `[Drop-out / Lanjut]`, tanpa memberikan petunjuk konkret apakah mahasiswa tersebut membutuhkan penyesuaian rencana studi (*academic mentoring*) atau bantuan restrukturisasi biaya kuliah (*financial aid*).
 
-Untuk mengatasi celah permasalahan tersebut, penelitian ini mengusulkan penerapan algoritma ensemble mutakhir **Gradient Boosting** yang dipadukan dengan kerangka kerja **Explainable Artificial Intelligence (XAI)** berbasis **SHAP (SHapley Additive exPlanations)**. Kerangka kerja ini secara khusus difokuskan pada rekam jejak **Tahun Pertama (Semester 1 dan Semester 2)** untuk mendeteksi risiko sedini mungkin, serta memanfaatkan metrik **PR-AUC** dan **Recall** untuk menjamin sensitivitas maksimal terhadap kelompok mahasiswa yang terancam putus studi.
+Untuk mengatasi celah permasalahan tersebut, penelitian ini mengusulkan penerapan algoritma ensemble mutakhir **Gradient Boosting** yang dipadukan dengan kerangka kerja **Explainable Artificial Intelligence (XAI)** berbasis **SHAP (SHapley Additive exPlanations)**. Penelitian ini menggunakan dataset benchmark empiris dari **Kaggle** dan **UCI Machine Learning Repository** dengan 4.424 rekam data mahasiswa. Kerangka kerja ini secara khusus difokuskan pada rekam jejak **Tahun Pertama (Semester 1 dan Semester 2)** untuk mendeteksi risiko sedini mungkin, serta memanfaatkan metrik **PR-AUC**, **Precision**, dan **Recall** untuk menjamin sensitivitas maksimal terhadap kelompok mahasiswa yang terancam putus studi.
 
 ---
 
 ### 1.2 Rumusan Masalah
 Berdasarkan latar belakang yang telah dipaparkan, rumusan masalah dalam penelitian ini adalah:
-1. Bagaimana merancang arsitektur model klasifikasi berbasis algoritma *Gradient Boosting* yang optimal dalam mendeteksi risiko *drop-out* mahasiswa menggunakan data tahun pertama (Semester 1 & 2)?
-2. Bagaimana efektivitas penerapan metrik evaluasi *imbalance-resilient* (PR-AUC, Macro F1, Recall) dibandingkan metrik akurasi konvensional dalam mengevaluasi kinerja model deteksi dini?
+1. Bagaimana merancang arsitektur model klasifikasi berbasis algoritma *Gradient Boosting* yang optimal dalam mendeteksi risiko *drop-out* mahasiswa menggunakan data tahun pertama (Semester 1 & 2) pada dataset empiris Kaggle?
+2. Bagaimana efektivitas penerapan metrik evaluasi *imbalance-resilient* (PR-AUC, Macro F1, Recall, Precision) dibandingkan metrik akurasi konvensional dalam mengevaluasi kinerja model deteksi dini?
 3. Bagaimana mengintegrasikan kerangka kerja *Explainable AI* (XAI) berbasis metode SHAP untuk menghasilkan interpretasi global mengenai faktor dominan putus studi di tingkat institusi dan interpretasi lokal per individu mahasiswa?
 4. Bagaimana memetakan dekomposisi atribusi fitur SHAP ke dalam rekomendasi aksi preskriptif yang dapat diimplementasikan langsung oleh Dosen Pembimbing Akademik?
 
@@ -55,8 +55,8 @@ Berdasarkan latar belakang yang telah dipaparkan, rumusan masalah dalam peneliti
 
 ### 1.3 Batasan Masalah (Ruang Lingkup Penelitian)
 Agar penelitian ini terarah dan memiliki fokus yang mendalam, ditetapkan batasan masalah sebagai berikut:
-1. **Horizon Waktu Data**: Data yang dianalisis dibatasi secara ketat pada data profil penerimaan awal, latar belakang sosio-ekonomi, dan rekam akademik dua semester pertama (Semester 1 dan Semester 2).
-2. **Objek Penelitian**: Data mahasiswa sarjana (*undergraduate*) yang mencakup variabel akademik, demografi, administrasi pembayaran UKT/SPP, dan indikator makro-ekonomi.
+1. **Sumber Data**: Menggunakan dataset benchmark publik resmi dari **Kaggle** (*Predict Students' Dropout and Academic Success*) yang bersumber dari *Polytechnic Institute of Portalegre (IPP)* via *UCI Machine Learning Repository* (Dataset ID: 697), terdiri dari 4.424 baris data dan 34 fitur prediktor.
+2. **Horizon Waktu Data**: Data yang dianalisis dibatasi secara ketat pada data profil penerimaan awal, latar belakang sosio-ekonomi, dan rekam akademik dua semester pertama (Semester 1 dan Semester 2).
 3. **Algoritma yang Digunakan**: Algoritma utama yang diuji adalah *Gradient Boosting Classifier* (dengan pembanding *Logistic Regression* sebagai linear baseline dan *Random Forest* sebagai bagging baseline).
 4. **Metode XAI**: Pengujian interpretabilitas model difokuskan pada metode *post-hoc* model-agnostik **SHAP (TreeExplainer)** dengan verifikasi visualisasi *Waterfall Plot* dan *Summary Plot*.
 
@@ -64,7 +64,7 @@ Agar penelitian ini terarah dan memiliki fokus yang mendalam, ditetapkan batasan
 
 ### 1.4 Tujuan Penelitian
 Tujuan yang ingin dicapai melalui penelitian ini adalah:
-1. Membangun model deteksi dini risiko *drop-out* mahasiswa berbasis *Gradient Boosting* dengan tingkat sensitivitas (Recall) dan PR-AUC yang tinggi pada data tahun pertama.
+1. Membangun model deteksi dini risiko *drop-out* mahasiswa berbasis *Gradient Boosting* dengan tingkat sensitivitas (Recall), Presisi, dan PR-AUC yang tinggi pada data tahun pertama.
 2. Membandingkan performa model usulan terhadap baseline (*Logistic Regression* dan *Random Forest*) dengan protokol validasi terstandar *Stratified 5-Fold Cross Validation*.
 3. Menerapkan metode SHAP untuk membongkar sifat *black-box* model, menghasilkan atribusi fitur yang adil secara matematis berdasarkan *Shapley Values*.
 4. Merancang prototipe konseptual *Decision Support Dashboard* yang menghubungkan hasil penjelasan SHAP dengan skema intervensi preskriptif (akademik vs finansial).
@@ -77,7 +77,7 @@ Tujuan yang ingin dicapai melalui penelitian ini adalah:
 * Memberikan bukti empiris mengenai ketahanan metrik evaluasi *Precision-Recall AUC* dalam mengatasi fenomena *Accuracy Paradox* pada data pendidikan berdistribusi timpang (*imbalanced*).
 
 #### B. Manfaat Praktis (Aplikatif)
-* **Bagi Pengelola Institusi & Program Studi**: Menyediakan sistem peringatan dini (*Early Warning System*) berbasis data yang akurat untuk menurunkan angka putus studi dan menjaga kestabilan pendapatan institusi.
+* **Bagi Pengelola Institusi & Program Studi**: Menyediakan sistem peringatan dini (*Early Warning System*) berbasis data yang akurat untuk menurunkan angka putus studi dan menjaga kestabilan operasional kampus.
 * **Bagi Dosen Pembimbing Akademik (Dosen Wali)**: Memberikan wawasan yang transparan dan dapat dipahami mengenai akar permasalahan spesifik setiap mahasiswa, sehingga bimbingan akademik menjadi personal dan solutif.
 * **Bagi Mahasiswa**: Mencegah kegagalan studi secara dini melalui pendampingan tepat sasaran sebelum masalah akademik atau finansial menjadi permanen.
 
@@ -117,8 +117,8 @@ Keunggulan matematis metode SHAP dibandingkan metode pentingnya fitur konvension
 ### 3.1 Kerangka Kerja Riset (CRISP-DM Adapted)
 Penelitian ini mengadopsi metodologi standar industri *Cross-Industry Standard Process for Data Mining* (CRISP-DM) yang disesuaikan ke dalam 6 tahapan terstruktur:
 1. **Business/Institutional Understanding**: Mendefinisikan kriteria drop-out dan memetakan kebutuhan intervensi Dosen Pembimbing Akademik.
-2. **Data Understanding**: Memeriksa kelengkapan 21 fitur prediktor (demografi, finansial, akademik S1 & S2) dan 1 variabel target pada 1.500 sampel mahasiswa.
-3. **Data Preparation**: Penanganan nilai kosong, verifikasi integritas data, dan standardisasi fitur numerik.
+2. **Data Understanding**: Memeriksa kelengkapan 34 fitur prediktor (demografi, finansial, akademik S1 & S2) dan 1 variabel target pada 4.424 sampel data riil mahasiswa Kaggle.
+3. **Data Preparation**: Penanganan standarisasi kolom, verifikasi integritas data, dan pemisahan data train-test terstratifikasi.
 4. **Modeling**: Pelatihan model *Logistic Regression*, *Random Forest*, dan *Gradient Boosting* dengan penanganan *class weights*.
 5. **Evaluation**: Pengukuran komparatif metrik PR-AUC, ROC-AUC, Recall, Precision, dan Macro F1 melalui *Stratified 5-Fold Cross Validation*.
 6. **Explanation & Prescriptive Translation**: Pemasangan lapisan *SHAP TreeExplainer* untuk ekstraksi faktor risiko global dan lokal, diikuti pemetaan aksi intervensi.
@@ -129,39 +129,40 @@ Penelitian ini mengadopsi metodologi standar industri *Cross-Industry Standard P
 Alur metodologi penelitian divisualisasikan dalam diagram berikut:
 
 ```
-[Dataset Mentah: 1.500 Data Mahasiswa]
-                   │
-                   ▼
-[Data Cleaning & Stratified Partitioning: 80% Train (1.200) / 20% Test (300)]
-                   │
-                   ▼
-     ┌───────────────────────────┐
-     │   Pelatihan Model (5-Fold)│
-     ├───────────────────────────┤
-     │ • Logistic Regression     │
-     │ • Random Forest           │
-     │ • Gradient Boosting (Main)│
-     └─────────────┬─────────────┘
-                   │
-                   ▼
+[Dataset Empiris Kaggle / UCI: 4.424 Rekam Mahasiswa]
+                          │
+                          ▼
+[Data Cleaning & Stratified Partitioning: 80% Train (3.539) / 20% Test (885)]
+                          │
+                          ▼
+            ┌───────────────────────────┐
+            │   Pelatihan Model (5-Fold)│
+            ├───────────────────────────┤
+            │ • Logistic Regression     │
+            │ • Random Forest           │
+            │ • Gradient Boosting (Main)│
+            └─────────────┬─────────────┘
+                          │
+                          ▼
 [Pengukuran Evaluasi Metrik: PR-AUC, Recall, Precision, F1-Macro, ROC-AUC]
-                   │
-                   ▼
+                          │
+                          ▼
 [Lapisan Explainable AI: SHAP Explainer (Global Summary & Local Waterfall)]
-                   │
-                   ▼
+                          │
+                          ▼
 [Rekomendasi Preskriptif: Akademik Mentoring vs Financial Relief]
 ```
 
 ---
 
-### 3.3 Variabel dan Spesifikasi Data
-Dataset penelitian mencakup variabel multidimensi:
-* **Fitur Demografi**: `Gender`, `Age_at_Enrollment`, `Marital_Status`, `Displaced`, `Special_Needs`.
-* **Fitur Sosio-Ekonomi & Finansial**: `Scholarship_Holder`, `Debtor`, `Tuition_Fees_Up_To_Date`, `Parents_Higher_Education`.
+### 3.3 Variabel dan Karakteristik Data Kaggle
+Dataset penelitian mencakup variabel multidimensi lengkap (34 prediktor):
+* **Fitur Demografi**: `Marital_status`, `Nacionality`, `Displaced`, `Educational_special_needs`, `Gender`, `Age_at_enrollment`, `International`.
+* **Fitur Pendaftaran**: `Application_mode`, `Application_order`, `Course`, `Daytime_evening_attendance`, `Previous_qualification`.
+* **Fitur Sosio-Ekonomi & Finansial**: `Mothers_qualification`, `Fathers_qualification`, `Mothers_occupation`, `Fathers_occupation`, `Scholarship_holder`, `Debtor`, `Tuition_fees_up_to_date`.
 * **Fitur Akademik Awal (S1 & S2)**: SKS terdaftar, SKS lulus, nilai rata-rata, dan frekuensi evaluasi ujian.
-* **Fitur Kontekstual Makro**: `Unemployment_Rate`, `Inflation_Rate`, `GDP`.
-* **Variabel Target**: `Target_Dropout` (0 = Non-Dropout, 1 = Dropout).
+* **Fitur Kontekstual Makro**: `Unemployment_rate`, `Inflation_rate`, `GDP`.
+* **Variabel Target**: `Target` (Dropout, Enrolled, Graduate) dan biner `Target_Dropout` (0 = Non-Dropout, 1 = Dropout).
 
 ---
 
@@ -171,7 +172,7 @@ Penelitian ini direncanakan berlangsung selama 6 (enam) bulan dengan rincian jad
 
 | No | Tahapan Aktivitas / Milestone | Bulan 1 | Bulan 2 | Bulan 3 | Bulan 4 | Bulan 5 | Bulan 6 |
 |:---|:---|:---:|:---:|:---:|:---:|:---:|:---:|
-| 1 | Studi Literatur Mendalam & Pengumpulan Data | █ | | | | | |
+| 1 | Pengambilan Data Kaggle & Studi Literatur Mendalam | █ | | | | | |
 | 2 | Eksplorasi Data (EDA) & Preprocessing Pipeline | | █ | | | | |
 | 3 | Pengembangan Baseline & Model Gradient Boosting | | | █ | | | |
 | 4 | Validasi Kinerja Model & Hyperparameter Tuning | | | | █ | | |

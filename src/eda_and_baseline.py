@@ -1,7 +1,8 @@
 """
 Script: eda_and_baseline.py
 Deskripsi: Eksplorasi Data Awal (EDA), Pelatihan Baseline Model (Logistic Regression,
-Random Forest, Gradient Boosting), dan Perhitungan Lengkap Metrik Evaluasi.
+Random Forest, Gradient Boosting), dan Perhitungan Lengkap Metrik Evaluasi
+menggunakan Dataset Riil Kaggle / UCI Machine Learning Repository (N = 4.424).
 """
 
 import os
@@ -9,11 +10,11 @@ import json
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split, StratifiedKFold, cross_validate
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, HistGradientBoostingClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score,
     roc_auc_score, average_precision_score, confusion_matrix,
@@ -31,51 +32,53 @@ def run_experiment():
     os.makedirs(fig_dir, exist_ok=True)
     os.makedirs(processed_dir, exist_ok=True)
     
-    print("=" * 70)
-    print("1. MEMUAT DAN MEMERIKSA DATASET...")
-    print("=" * 70)
+    print("=" * 75)
+    print("1. MEMUAT DATASET EMPIRIS KAGGLE / UCI ML REPOSITORY...")
+    print("=" * 75)
     df = pd.read_csv(data_path)
-    print(f"Dataset berhasil dimuat: {df.shape[0]} baris, {df.shape[1]} kolom.")
+    print(f"Dataset berhasil dimuat: {df.shape[0]} baris sampel riil, {df.shape[1]} kolom.")
     
     # Fitur dan Target
-    features = [c for c in df.columns if c not in ["Student_ID", "Target", "Target_Dropout"]]
+    features = [c for c in df.columns if c not in ["Target", "Target_Dropout"]]
     X = df[features]
     y = df["Target_Dropout"]
     
-    dropout_count = y.sum()
-    persist_count = len(y) - dropout_count
-    print(f"\nDistribusi Target_Dropout:")
+    dropout_count = int(y.sum())
+    persist_count = int(len(y) - dropout_count)
+    print(f"\nDistribusi Target_Dropout Riil:")
     print(f" - Non-Dropout (0) : {persist_count} ({persist_count/len(y)*100:.2f}%)")
     print(f" - Dropout     (1) : {dropout_count} ({dropout_count/len(y)*100:.2f}%)")
-    print(f" - Imbalance Ratio: 1 : {persist_count/dropout_count:.2f}")
+    print(f" - Imbalance Ratio : 1 : {persist_count/dropout_count:.2f}")
 
     # Simpan statistik deskriptif
     desc = df.describe().round(2)
     desc.to_csv(os.path.join(processed_dir, "descriptive_statistics.csv"))
-    print(f"\n[OK] Statistik deskriptif disimpan di data/processed/descriptive_statistics.csv")
+    print(f"[OK] Statistik deskriptif disimpan di data/processed/descriptive_statistics.csv")
     
     # -------------------------------------------------------------
-    # Visualisasi 1: Distribusi Kelas & Korelasi Utama
+    # Visualisasi 1: Distribusi Kelas Riil
     # -------------------------------------------------------------
-    plt.figure(figsize=(10, 4))
+    plt.figure(figsize=(11, 4.5))
     
     plt.subplot(1, 2, 1)
     counts = df["Target"].value_counts()
     colors = ["#2b5c8f", "#d95f02", "#7570b3"]
     plt.bar(counts.index, counts.values, color=colors, edgecolor="black", alpha=0.85)
-    plt.title("Distribusi Status Kelulusan (3 Kelas)", fontsize=11, fontweight="bold")
+    plt.title("Distribusi Status Akademik Riil (3 Kelas Kaggle)", fontsize=11, fontweight="bold")
     plt.ylabel("Jumlah Mahasiswa")
     for i, v in enumerate(counts.values):
-        plt.text(i, v + 15, f"{v} ({v/len(df)*100:.1f}%)", ha="center", fontsize=9)
+        plt.text(i, v + 40, f"{v}\n({v/len(df)*100:.1f}%)", ha="center", fontsize=9)
+    plt.ylim(0, max(counts.values) * 1.15)
     plt.grid(axis="y", linestyle="--", alpha=0.6)
     
     plt.subplot(1, 2, 2)
     bin_counts = y.value_counts()
     plt.bar(["Non-Dropout (0)", "Dropout (1)"], bin_counts.values, color=["#1b9e77", "#e7298a"], edgecolor="black", alpha=0.85)
-    plt.title("Distribusi Target Biner (Rasio Imbalance)", fontsize=11, fontweight="bold")
+    plt.title("Distribusi Target Biner Deteksi Dini (Rasio Imbalance)", fontsize=11, fontweight="bold")
     plt.ylabel("Jumlah Mahasiswa")
     for i, v in enumerate(bin_counts.values):
-        plt.text(i, v + 20, f"{v} ({v/len(y)*100:.1f}%)", ha="center", fontsize=9)
+        plt.text(i, v + 50, f"{v}\n({v/len(y)*100:.1f}%)", ha="center", fontsize=9)
+    plt.ylim(0, max(bin_counts.values) * 1.15)
     plt.grid(axis="y", linestyle="--", alpha=0.6)
     
     plt.tight_layout()
@@ -84,7 +87,7 @@ def run_experiment():
     print("[OK] Figure 1 tersimpan: class_distribution.png")
 
     # -------------------------------------------------------------
-    # 2. PEMBAGIAN DATA (TRAIN / TEST SPLIT TERSTRATIFIKASI)
+    # 2. PEMBAGIAN DATA TERSTRATIFIKASI (80% TRAIN / 20% TEST)
     # -------------------------------------------------------------
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.20, random_state=42, stratify=y
@@ -99,8 +102,8 @@ def run_experiment():
             ("scaler", StandardScaler()),
             ("clf", LogisticRegression(class_weight="balanced", random_state=42, max_iter=1000))
         ]),
-        "Random_Forest": RandomForestClassifier(
-            n_estimators=150, max_depth=8, class_weight="balanced", random_state=42
+        "Random_Forest (Bagging)": RandomForestClassifier(
+            n_estimators=150, max_depth=10, class_weight="balanced", random_state=42
         ),
         "Gradient_Boosting (Proposed)": GradientBoostingClassifier(
             n_estimators=150, learning_rate=0.08, max_depth=4, random_state=42
@@ -110,9 +113,9 @@ def run_experiment():
     results = {}
     test_predictions = {}
     
-    print("\n" + "=" * 70)
-    print("4. PELATIHAN DAN PENGUKURAN EVALUATION METRICS PADA TEST SET")
-    print("=" * 70)
+    print("\n" + "=" * 75)
+    print("4. EVALUASI METRIK PREDIKTIF PADA DATA TEST KAGGLE (N = 885)")
+    print("=" * 75)
     
     for name, model in models.items():
         model.fit(X_train, y_train)
@@ -218,7 +221,7 @@ def run_experiment():
         clean_name = name.split(" ")[0].replace("_", " ")
         axes[1].plot(recall_vals, precision_vals, label=f"{clean_name} (PR-AUC = {prauc_val:.3f})", lw=2)
     
-    baseline_pr = y_test.sum() / len(y_test)
+    baseline_pr = float(y_test.sum() / len(y_test))
     axes[1].axhline(y=baseline_pr, color="r", linestyle="--", alpha=0.5, label=f"Baseline Prevalensi ({baseline_pr:.2f})")
     axes[1].set_title("Precision-Recall Curve (PR-AUC)", fontsize=11, fontweight="bold")
     axes[1].set_xlabel("Recall (Coverage Siswa Berisiko)")
@@ -235,7 +238,7 @@ def run_experiment():
     # Visualisasi 4: Permutation Feature Importance (Aproksimasi XAI)
     # -------------------------------------------------------------
     gb_model = models["Gradient_Boosting (Proposed)"]
-    perm_importance = permutation_importance(gb_model, X_test, y_test, n_repeats=10, random_state=42)
+    perm_importance = permutation_importance(gb_model, X_test, y_test, n_repeats=5, random_state=42)
     
     sorted_idx = perm_importance.importances_mean.argsort()[::-1][:10]
     top_features = [features[i] for i in sorted_idx]
@@ -246,16 +249,16 @@ def run_experiment():
     plt.barh(y_pos, top_importances[::-1], color="#2c7fb8", edgecolor="black", alpha=0.85)
     plt.yticks(y_pos, [f.replace("_", " ") for f in top_features[::-1]], fontsize=9)
     plt.xlabel("Permutation Feature Importance (Mean Decrease in PR-AUC / Accuracy)")
-    plt.title("Top 10 Indikator Utama Deteksi Dini Drop-Out (Model Gradient Boosting)", fontsize=11, fontweight="bold")
+    plt.title("Top 10 Indikator Utama Risiko Drop-Out (Data Riil Kaggle / UCI)", fontsize=11, fontweight="bold")
     plt.grid(axis="x", linestyle="--", alpha=0.6)
     plt.tight_layout()
     plt.savefig(os.path.join(fig_dir, "feature_importance.png"), dpi=200)
     plt.close()
     print("[OK] Figure 4 tersimpan: feature_importance.png")
     
-    print("\n" + "=" * 70)
-    print("EKSPERIMEN & VISUALISASI SELESAI DENGAN SUKSES!")
-    print("=" * 70)
+    print("\n" + "=" * 75)
+    print("EKSPERIMEN & VISUALISASI DENGAN DATASET KAGGLE BERHASIL SELESAI!")
+    print("=" * 75)
 
 if __name__ == "__main__":
     run_experiment()
